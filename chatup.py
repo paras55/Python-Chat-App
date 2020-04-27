@@ -15,13 +15,11 @@ socketio = SocketIO( app )
 def hello():
   return render_template( './ChatApp.html' )
 
-def messageRecived():
-  print( 'message was received!!!' )
 
 @socketio.on( 'my event' )
 def handle_my_custom_event( json ):
   print( 'recived my event: ' + str( json ) )
-  socketio.emit( 'my response', json, callback=messageRecived )
+  socketio.emit( 'my response', json )
 
 if __name__ == '__main__':
   socketio.run( app, debug = True )
